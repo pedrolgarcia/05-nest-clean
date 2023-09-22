@@ -5,15 +5,15 @@ import { AuthenticateController } from '@/infra/http/controllers/authenticate.co
 import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
 import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
 
-import { PrismaService } from '@/infra/prisma/prisma.service'
+import { DatabaseModule } from '../database/database.module'
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [
     CreateAccountController,
     CreateQuestionController,
     FetchRecentQuestionsController,
     AuthenticateController,
   ],
-  providers: [PrismaService],
 })
 export class HttpModule {}
