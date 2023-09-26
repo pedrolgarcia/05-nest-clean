@@ -26,5 +26,7 @@ export class CreateAccountController {
   @Post()
   @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createAccountBodySchema))
-  async handle(@Body() body: CreateAccountBodySchema) {}
+  async handle(@Body() body: CreateAccountBodySchema) {
+    return null
+  }
 }
