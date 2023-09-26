@@ -8,6 +8,7 @@ import {
   BadRequestException,
 } from '@nestjs/common'
 import { z } from 'zod'
+import { Public } from '@/infra/auth/public'
 
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation.pipe'
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
@@ -22,6 +23,7 @@ const registerStudentBodySchema = z.object({
 type RegisterStudentBodySchema = z.infer<typeof registerStudentBodySchema>
 
 @Controller('/accounts')
+@Public()
 export class RegisterStudentController {
   constructor(private registerStudent: RegisterStudentUseCase) {}
 
