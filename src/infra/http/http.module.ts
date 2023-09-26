@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common'
 import { DatabaseModule } from '../database/database.module'
 import { CryptographyModule } from '../cryptography/cryptography.module'
 
-import { CreateAccountController } from '@/infra/http/controllers/create-account.controller'
+import { RegisterStudentController } from '@/infra/http/controllers/register-student.controller'
 import { AuthenticateController } from '@/infra/http/controllers/authenticate.controller'
 import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
 import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
@@ -16,7 +16,7 @@ import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
-    CreateAccountController,
+    RegisterStudentController,
     CreateQuestionController,
     FetchRecentQuestionsController,
     AuthenticateController,
