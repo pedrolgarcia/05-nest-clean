@@ -8,28 +8,32 @@ import { RegisterStudentController } from '@/infra/http/controllers/register-stu
 import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
 import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
 import { GetQuestionBySlugController } from '@/infra/http/controllers/get-question-by-slug-controller'
+import { EditQuestionController } from '@/infra/http/controllers/edit-question.controller'
 
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
+import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
     AuthenticateController,
     RegisterStudentController,
-    CreateQuestionController,
     FetchRecentQuestionsController,
     GetQuestionBySlugController,
+    CreateQuestionController,
+    EditQuestionController,
   ],
   providers: [
     AuthenticateStudentUseCase,
     RegisterStudentUseCase,
-    CreateQuestionUseCase,
     FetchRecentQuestionsUseCase,
     GetQuestionBySlugUseCase,
+    CreateQuestionUseCase,
+    EditQuestionUseCase,
   ],
 })
 export class HttpModule {}
