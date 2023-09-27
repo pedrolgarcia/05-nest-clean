@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
 import { Question } from '@/domain/forum/enterprise/entities/question'
+
 import { PrismaService } from '../prisma.service'
 import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper'
 
@@ -70,11 +71,9 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
   }
 
   async delete(question: Question): Promise<void> {
-    const data = PrismaQuestionMapper.toPrisma(question)
-
     await this.prisma.question.delete({
       where: {
-        id: data.id,
+        id: question.id.toString(),
       },
     })
   }
