@@ -4,6 +4,8 @@ import { Either, left, right } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/use-case-errors/resource-not-found-error'
 import { NotAllowerError } from '@/core/errors/use-case-errors/not-allowed-error'
 
+import { Injectable } from '@nestjs/common'
+
 interface DeleteAnswerUseCaseRequest {
   authorId: string
   answerId: string
@@ -14,6 +16,7 @@ type DeleteAnswerUseCaseResponse = Either<
   null
 >
 
+@Injectable()
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
 
