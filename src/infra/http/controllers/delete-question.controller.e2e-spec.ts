@@ -11,7 +11,7 @@ import { JwtService } from '@nestjs/jwt'
 import { StudentFactory } from 'test/factories/make-student'
 import { QuestionFactory } from 'test/factories/make-question'
 
-describe('Edit Question (E2E)', () => {
+describe('Delete Question (E2E)', () => {
   let app: INestApplication
   let prisma: PrismaService
   let questionFactory: QuestionFactory
@@ -34,7 +34,7 @@ describe('Edit Question (E2E)', () => {
     await app.init()
   })
 
-  test('[PUT] /questions/:id', async () => {
+  test('[DELETE] /questions/:id', async () => {
     const user = await studentFactory.makePrismaStudent()
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
@@ -46,22 +46,18 @@ describe('Edit Question (E2E)', () => {
     const questionId = question.id.toString()
 
     const response = await request(app.getHttpServer())
-      .put(`/questions/${questionId}`)
+      .delete(`/questions/${questionId}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send({
-        title: 'New title',
-        content: 'New content',
-      })
+      .send()
 
     expect(response.statusCode).toBe(204)
 
-    const questionOnDatabase = await prisma.question.findFirst({
+    const questionOnDatabase = await prisma.question.findUnique({
       where: {
-        title: 'New title',
-        content: 'New content',
+        id: questionId,
       },
     })
 
-    expect(questionOnDatabase).toBeTruthy()
+    expect(questionOnDatabase).toBeNull()
   })
 })

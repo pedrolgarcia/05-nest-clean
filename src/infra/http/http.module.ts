@@ -3,12 +3,13 @@ import { Module } from '@nestjs/common'
 import { DatabaseModule } from '../database/database.module'
 import { CryptographyModule } from '../cryptography/cryptography.module'
 
-import { AuthenticateController } from '@/infra/http/controllers/authenticate.controller'
-import { RegisterStudentController } from '@/infra/http/controllers/register-student.controller'
-import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
-import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
-import { GetQuestionBySlugController } from '@/infra/http/controllers/get-question-by-slug-controller'
-import { EditQuestionController } from '@/infra/http/controllers/edit-question.controller'
+import { AuthenticateController } from './controllers/authenticate.controller'
+import { RegisterStudentController } from './controllers/register-student.controller'
+import { CreateQuestionController } from './controllers/create-question.controller'
+import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
+import { GetQuestionBySlugController } from './controllers/get-question-by-slug-controller'
+import { EditQuestionController } from './controllers/edit-question.controller'
+import { DeleteQuestionController } from './controllers/delete-question.controller'
 
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
@@ -16,6 +17,7 @@ import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/crea
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-question'
+import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -26,6 +28,7 @@ import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-q
     GetQuestionBySlugController,
     CreateQuestionController,
     EditQuestionController,
+    DeleteQuestionController,
   ],
   providers: [
     AuthenticateStudentUseCase,
@@ -34,6 +37,7 @@ import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-q
     GetQuestionBySlugUseCase,
     CreateQuestionUseCase,
     EditQuestionUseCase,
+    DeleteQuestionUseCase,
   ],
 })
 export class HttpModule {}
