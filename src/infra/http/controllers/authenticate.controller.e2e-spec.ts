@@ -6,8 +6,6 @@ import request from 'supertest'
 import { AppModule } from '@/infra/app.module'
 import { DatabaseModule } from '@/infra/database/database.module'
 
-import { PrismaService } from '@/infra/database/prisma/prisma.service'
-
 import { StudentFactory } from 'test/factories/make-student'
 
 describe('Authenticate (E2E)', () => {
