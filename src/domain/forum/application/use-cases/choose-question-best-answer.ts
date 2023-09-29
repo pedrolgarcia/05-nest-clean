@@ -8,6 +8,8 @@ import { QuestionsRepository } from '../repositories/questions-repository'
 import { ResourceNotFoundError } from '@/core/errors/use-case-errors/resource-not-found-error'
 import { NotAllowerError } from '@/core/errors/use-case-errors/not-allowed-error'
 
+import { Injectable } from '@nestjs/common'
+
 interface ChooseQuestionBestAnswerUseCaseRequest {
   authorId: string
   answerId: string
@@ -20,6 +22,7 @@ type ChooseQuestionBestAnswerUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
     private questionsRepository: QuestionsRepository,
